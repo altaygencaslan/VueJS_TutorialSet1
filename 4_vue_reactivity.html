@@ -1,0 +1,42 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<h2>Reactivity</h2>
+<p>Bir butona basılıp bir değer değiştiğinde ona bağla başka bir değerin etkilenmesi ve değişmesi</p>
+
+<div id="divContainer">
+    <h4>Bad Way</h4>
+    <button v-on:click="increase()">Arttır</button>
+    <button v-on:click="decrease()">Azalt</button>
+    <p>Counter: {{ counter1 }}</p>
+    <p v-text="resultcounter1"></p>
+    <hr>
+    <h4>Good Way</h4>
+    <button v-on:click="counter2++">Arttır</button>
+    <button v-on:click="counter2--">Azalt</button>
+    <p>Counter: {{ counter2 }}</p>
+    <p v-text="resultcounter2()"></p>
+</div>
+
+<script>
+    new Vue({
+        el: "#divContainer",
+        data: {
+            counter1: 0,
+            resultcounter1: "",
+            counter2: 0
+        },
+        methods: {
+            increase: function () {
+                this.counter1++;
+                this.resultcounter1 = (this.counter1 > 10 ? "10'dan büyüktür" : "10'dan küçüktür");
+            },
+            decrease: function () {
+                this.counter1--;
+                this.resultcounter1 = (this.counter1 > 10 ? "10'dan büyüktür" : "10'dan küçüktür");
+            },
+            resultcounter2: function () {
+                return (this.counter2 > 10 ? "10'dan büyüktür" : "10'dan küçüktür");
+            }
+        }
+    });
+</script>

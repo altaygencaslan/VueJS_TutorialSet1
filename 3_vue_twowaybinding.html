@@ -1,0 +1,18 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<h2>Two Way Binding</h2>
+<p>V-Model ile inputta izlenmek istenen değişken yazılır ve bu değişken atanan her yerde değerini yansıtır</p>
+
+<div id="divContainer">
+    <input type="text" v-model="name">
+    <p v-text="name"></p>
+</div>
+
+<script>
+    new Vue({
+        el:"#divContainer",
+        data:{
+            name: ""
+        }
+    });
+</script>

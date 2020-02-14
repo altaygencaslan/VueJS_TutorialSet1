@@ -14,17 +14,19 @@
     <button v-on:click="btn4_onClick(5, $event)">{{ counter }} Arttır v4 !</button>
     <p></p>
     <hr>
+    
     <h4>DOM'dan gelen event parametresi kullanımı:</h4>
-    <h3>Kordinatlar:</h3>
+    <p>Kordinatlar:</p>
     <p>{{ x_Coordinate }}, {{ y_Coordinate }}</p>
     <h4>Event Modifier:</h4>
-    <button v-on:mousemove.stop>Gizli Bölme (Burada kordinatlar okunmaz)</button>
+    <div style="width: 400px; height:200px; padding: auto; color: aliceblue; background-color: blueviolet;" v-on:mousemove.stop>Gizli Bölme (Burada kordinatlar okunmaz)</div>
     <p></p>
     <hr>
+
     <h3>Key events</h3>
-    <h4>Event modifier ile Enter ve Space ile girilen yazıyı alert olarak verecek</h4>
-    <h4>Bağlı metoddaki event nesne hakkında bazı özellikleri verir </h4>
-    <h4>Event Modifier'da bu örnekteki Enter ve space işlemi gibi özel tuşları zincir mantığıyla ardı ardına sıralayabilirsin</h4>
+    <p>Event modifier ile Enter ve Space ile girilen yazıyı alert olarak verecek</p>
+    <p>Bağlı metoddaki event nesne hakkında bazı özellikleri verir </p>
+    <p>Event Modifier'da bu örnekteki Enter ve space işlemi gibi özel tuşları zincir mantığıyla ardı ardına sıralayabilirsin</p>
     <input type="text" v-on:keyup.enter.space="input1_keyUp">
     <p></p>
     <hr>
