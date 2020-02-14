@@ -1,0 +1,64 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<h2>Events</h2>
+
+<div id="dvMainContainer" v-on:mousemove="updateCoords" style="border: 1px solid black;">
+    <button v-on:click="btn1_onClick('String test input')">Click Me for Alert!</button>
+    <p></p>
+    <button v-on:click="btn2_onClick">{{ counter }} Arttır v1 !</button>
+    <p></p>
+    <button v-on:click="counter++">{{ counter }} Arttır v2 !</button>
+    <p></p>
+    <button v-on:click="btn3_onClick(5)">{{ counter }} Arttır v3 !</button>
+    <p></p>
+    <button v-on:click="btn4_onClick(5, $event)">{{ counter }} Arttır v4 !</button>
+    <p></p>
+    <hr>
+    <h4>DOM'dan gelen event parametresi kullanımı:</h4>
+    <h3>Kordinatlar:</h3>
+    <p>{{ x_Coordinate }}, {{ y_Coordinate }}</p>
+    <h4>Event Modifier:</h4>
+    <button v-on:mousemove.stop>Gizli Bölme (Burada kordinatlar okunmaz)</button>
+    <p></p>
+    <hr>
+    <h3>Key events</h3>
+    <h4>Event modifier ile Enter ve Space ile girilen yazıyı alert olarak verecek</h4>
+    <h4>Bağlı metoddaki event nesne hakkında bazı özellikleri verir </h4>
+    <h4>Event Modifier'da bu örnekteki Enter ve space işlemi gibi özel tuşları zincir mantığıyla ardı ardına sıralayabilirsin</h4>
+    <input type="text" v-on:keyup.enter.space="input1_keyUp">
+    <p></p>
+    <hr>
+</div>
+
+<script>
+    new Vue({
+        el: "#dvMainContainer",
+        data: {
+            counter: 0,
+            x_Coordinate: 0,
+            y_Coordinate: 0
+        },
+        methods: {
+            btn1_onClick: function (message) {
+                alert(message);
+            },
+            btn2_onClick: function () {
+                this.counter++
+            },
+            btn3_onClick: function (step) {
+                this.counter+=step;
+            },
+            btn4_onClick: function (step, event) {
+                this.counter+=step;
+                alert(event.clientX + ", " + event.clientY);
+            },
+            updateCoords: function (event) {
+                this.x_Coordinate = event.clientX;
+                this.y_Coordinate = event.clientY;
+            },
+            input1_keyUp:function(event) {
+                alert(event.target.value);
+            }
+        }
+    });
+</script>
