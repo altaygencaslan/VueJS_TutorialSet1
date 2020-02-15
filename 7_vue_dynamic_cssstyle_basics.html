@@ -1,0 +1,42 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<h2>Dynamic CSS Basics</h2>
+<p>
+    Dinamik CSS kullanımında :class="{ key : value}" şeklinde değer alır. Burada "key" atanmasını istediğimiz
+    değer. Aşağıdaki örnek için bu yellow. "value" ise ne olduğunda veya hangi şart sağlandığında bu 
+    class'ın (yellow) ekleneceği şartıdır. Hızlı bir testamacıyla aşağıda key bilgisine yellow ve value 
+    bilgisine de true yazarsak kutu sarı olacaktır, false yazarsak kutu gri kalacaktır. Aşağıdaki örnekte 
+    2 adet class görülmekte ve bunlar çakışmamaktadır zira göre soldaki standart class bilgisi element ile 
+    gelebilir ancak sağdaki Vue ile bind edilmiş class ise Vue ile alınıp render edilen class bilgisidir ve Vue
+    bu ayrımı yapabilir. Ayrıca key-value çiftleri seri halinde birkaç adeteklenebilir.
+</p>
+
+<div id="divContainer">
+    <div @click="attached = !attached" class="box" :class="{ yellow : attached }"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+</div>
+
+<script>
+    new Vue({
+        el: "#divContainer",
+        data:{
+            attached:false
+        }
+    });
+</script>
+
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .yellow {
+        background-color: yellow;
+
+    }
+</style>
