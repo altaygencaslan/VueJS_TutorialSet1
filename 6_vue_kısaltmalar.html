@@ -1,0 +1,19 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<h2>Kısaltmalar</h2>
+<p>
+    Kısaltmalar v-bind için ":" [v-bind:href yerine :href], v-on için "@" [örn: v-on:click yerine @click] kullanılır.
+    
+</p>
+
+<div id="divContainer">
+    <h4>Long Way</h4>
+    <button v-on:click="counter++">Arttır</button>
+    <p v-text="counter"></p>
+    <a v-bind:href="https://www.google.com">Link</a>
+    <hr>
+    <h4>Short Way</h4>
+    <button @click="counter++">Arttır</button>
+    <p v-text="counter"></p>
+    <a v-bind:href="https://www.google.com">Link</a>
+</div>
