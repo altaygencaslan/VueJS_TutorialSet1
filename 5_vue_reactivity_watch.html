@@ -1,0 +1,35 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<h2>Reactivity - Watch</h2>
+<p>
+    Watch, data içindeki property'leri direkt gözlemlemeyi sağlar. Onun değeri değiştiğinde Watch
+    devreye girer ve almak istediğimiz aksiyonları almamızı sağlar. (Bir nevi onPropertyChangeEvent sanırım)
+
+</p>
+
+<div id="divContainer">
+    <button v-on:click="counter++">Arttır</button>
+    <p v-text="counter"></p>
+</div>
+
+<script>
+    new Vue({
+        el: "#divContainer",
+        data: {
+            counter: 0
+        },
+        methods: {
+
+        },
+        watch: {
+            counter: function (value) {
+                console.log(value);
+                vm = this;
+                setTimeout(function () {
+                    vm.counter = 0;
+                    console.log("Counter reset!");
+                }, 1500);
+            }
+        }
+    });
+</script>
