@@ -1,8 +1,13 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-<h2>Reactivity</h2>
+<h2>Reactivity - Computed Properties</h2>
 <p>Bir butona basılıp bir değer değiştiğinde ona bağla başka bir değerin etkilenmesi ve değişmesi</p>
-
+<p>Aşağıdaki örnekte arttırılıp azaltılan artından da ekrana bastırılan her bir işlem aslında tüm 
+    ekranı yenilediğinden bir maliyet sayılmakta. Burada Eğer ki ekrana bastırma yapmasydık ilgili değer
+yine artacaktı ancak ekrana bastırmadığımız için hem tüm ekran balışmayacaktı hem de ekrandaki diğer 
+elemanlar yeniden derlenerek maliyet oluşturmayacaktı. Buradaki en mantıklı çözüm "Computed Properites"
+adı verilen yöntemdir. Bir değişken gibi davransa da bir metod gibi çalışmaktadır. Computed başlığı altında
+tanımlanır ve metod gibi değil değişken gibi çağırılır. </p>
 <div id="divContainer">
     <h4>Bad Way</h4>
     <button v-on:click="increase()">Arttır</button>
@@ -15,6 +20,10 @@
     <button v-on:click="counter2--">Azalt</button>
     <p>Counter: {{ counter2 }}</p>
     <p v-text="resultcounter2()"></p>
+    <h4>Best Way</h4>
+    <button v-on:click="counter2++">Computed Arttır</button>
+    <p>{{ counter1 }} || {{ output }} </p>
+
 </div>
 
 <script>
@@ -27,14 +36,26 @@
         },
         methods: {
             increase: function () {
+                console.log("Metod çalıştı");
+
                 this.counter1++;
                 this.resultcounter1 = (this.counter1 > 10 ? "10'dan büyüktür" : "10'dan küçüktür");
             },
             decrease: function () {
+                console.log("Metod çalıştı");
+
                 this.counter1--;
                 this.resultcounter1 = (this.counter1 > 10 ? "10'dan büyüktür" : "10'dan küçüktür");
             },
             resultcounter2: function () {
+                console.log("Metod çalıştı");
+
+                return (this.counter2 > 10 ? "10'dan büyüktür" : "10'dan küçüktür");
+            }
+        },
+        computed:{
+            output: function(){
+                console.log("Computed metod çalıştı");
                 return (this.counter2 > 10 ? "10'dan büyüktür" : "10'dan küçüktür");
             }
         }
