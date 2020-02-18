@@ -1,0 +1,55 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<h2>Dynamic CSS Name</h2>
+<p>
+    Dinamik CSS Name kullanımında :class array olarak kulllanılabilir ancak [green, blue, yellow] vs şeklinde kullanılmaz,
+    bunun yerine ilki css name e sonrası koşullu girdi şeklinde [color, { yellow, attached }] yazılabilir. 
+</p>
+
+<div id="divContainer">
+    <div class="box" :class="color"></div>
+    <div class="box" :class="[color, { yellow : attached }]"></div>
+    <br>
+    <input type="text" v-model="color">
+</div>
+
+<script>
+    new Vue({
+        el: "#divContainer",
+        data: {
+            attached: true,
+            color: "green"
+        },
+        computed: {
+            divClass: function () {
+                return {
+                    yellow : this.attached, 
+                    blue : !this.attached
+                }
+            }
+        }
+    });
+</script>
+
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .yellow {
+        background-color: yellow;
+
+    }
+
+    .blue {
+        background-color: blue;
+    }
+
+    .green {
+        background-color: green;
+    }
+</style>

@@ -1,0 +1,59 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<h2>Dynamic CSS Style</h2>
+<p>
+    Style işlemlerinde eğer tırnaksız yazılmak istenirse aradaki çizgi kalkar ve camelCase yazıma geçilir (1. box)
+    veya tınak içinde style içinde yazıldığı gibi yazılabilir (2. box).
+
+</p>
+
+<div id="divContainer">
+    <div class="box" :style="{ backgroundColor : color}"></div>
+    <div class="box" :style="{ 'background-color' : color}"></div>
+    <div class="box" :style="customStyle"></div>
+    <br>
+    <input type="text" v-model="color">
+    <input type="text" v-model="height">
+</div>
+
+<script>
+    new Vue({
+        el: "#divContainer",
+        data: {
+            attached: true,
+            color: "green",
+            height: 100
+        },
+        computed: {
+            customStyle: function () {
+                return {
+                    backgroundColor:this.color,
+                    height:this.height + "px"
+                }
+            }
+        }
+    });
+</script>
+
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .yellow {
+        background-color: yellow;
+
+    }
+
+    .blue {
+        background-color: blue;
+    }
+
+    .green {
+        background-color: green;
+    }
+</style>
