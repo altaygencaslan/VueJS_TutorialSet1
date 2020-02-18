@@ -11,9 +11,10 @@
     <div class="box" :style="{ backgroundColor : color}"></div>
     <div class="box" :style="{ 'background-color' : color}"></div>
     <div class="box" :style="customStyle"></div>
+    <div class="box" :style="[ customStyle , { width :  yukseklik + 'px' } ]"></div>
     <br>
     <input type="text" v-model="color">
-    <input type="text" v-model="height">
+    <input type="text" v-model="yukseklik">
 </div>
 
 <script>
@@ -22,13 +23,13 @@
         data: {
             attached: true,
             color: "green",
-            height: 100
+            yukseklik: 100
         },
         computed: {
             customStyle: function () {
                 return {
                     backgroundColor:this.color,
-                    height:this.height + "px"
+                    height:this.yukseklik + "px"
                 }
             }
         }
