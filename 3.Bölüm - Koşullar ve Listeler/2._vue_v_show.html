@@ -1,0 +1,20 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<h2>V-SHOW</h2>
+<p>
+
+</p>
+
+<div id="dvContainer">
+    <button @click="showParag = !showParag">Göster</button>
+    <p v-show="showParag">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio natus eos quam doloremque ab ullam ipsa ipsam eveniet dolores voluptas? Voluptas, reiciendis nobis. Dicta possimus nostrum iure totam, explicabo quod?</p>
+</div>
+
+<script>
+    new Vue({
+        el: "#dvContainer",
+        data: {
+            showParag:false
+        }
+    });
+</script>
