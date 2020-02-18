@@ -1,0 +1,25 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<h2>V-IF</h2>
+<p>
+
+</p>
+
+<div id="dvContainer">
+    <p v-if="show">Yazı 1</p>
+    <p v-else>Yazı 2</p>
+    <button @click="show = !show">Göster / Gizle</button>
+    <p v-if="sayi < 10">Sayi 10'dan küçüktür</p>
+    <p v-else-if="sayi > 10">Sayi 10'dan büyüktür</p>
+    <p v-else>Sayi 10'a eşittir</p>
+</div>
+
+<script>
+    new Vue({
+        el: "#dvContainer",
+        data: {
+            show: true,
+            sayi: 10
+        }
+    });
+</script>
