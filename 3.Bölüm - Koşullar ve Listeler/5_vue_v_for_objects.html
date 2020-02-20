@@ -1,0 +1,548 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<h2>V-FOR</h2>
+<p>
+
+</p>
+
+<div id="dvContainer">
+    <ul v-for="person in persons">
+        <li v-text="person.name + ' ' + person.lastname + ' - ' + person.email"></li>
+    <!-- </ul>
+    <hr>
+    <table border="1" v-for="(product, index) in prodcuts">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td v-text="index"></td>
+                <td v-text="product"></td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <table border="1">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+        </thead>
+        <tbody v-for="(product, index) in prodcuts">
+            <tr>
+                <td v-text="index"></td>
+                <td v-text="product"></td>
+            </tr>
+        </tbody>
+    </table>
+    <hr> -->
+</div>
+
+<script>
+    new Vue({
+        el: "#dvContainer",
+        data: {
+            persons: [{
+                    "name": "Karina",
+                    "lastname": "Abbott",
+                    "email": "eu.nulla@massa.org"
+                },
+                {
+                    "name": "Kevin",
+                    "lastname": "Blevins",
+                    "email": "non@uteros.ca"
+                },
+                {
+                    "name": "Madonna",
+                    "lastname": "Bartlett",
+                    "email": "Proin.eget@convallis.co.uk"
+                },
+                {
+                    "name": "Wyatt",
+                    "lastname": "Alvarez",
+                    "email": "risus@lectus.com"
+                },
+                {
+                    "name": "Blythe",
+                    "lastname": "Chase",
+                    "email": "quam.quis@in.com"
+                },
+                {
+                    "name": "Lisandra",
+                    "lastname": "Munoz",
+                    "email": "egestas@Nullam.net"
+                },
+                {
+                    "name": "Ezekiel",
+                    "lastname": "Johnson",
+                    "email": "ornare.elit@aliquetlibero.com"
+                },
+                {
+                    "name": "James",
+                    "lastname": "Wolfe",
+                    "email": "dui.augue.eu@Mauris.co.uk"
+                },
+                {
+                    "name": "Kameko",
+                    "lastname": "Schroeder",
+                    "email": "sollicitudin.commodo@Donec.org"
+                },
+                {
+                    "name": "Sylvester",
+                    "lastname": "Pace",
+                    "email": "facilisis.non@Crassedleo.co.uk"
+                },
+                {
+                    "name": "Vaughan",
+                    "lastname": "Whitaker",
+                    "email": "dignissim.pharetra.Nam@diam.ca"
+                },
+                {
+                    "name": "Rigel",
+                    "lastname": "Keith",
+                    "email": "ridiculus@aliquam.ca"
+                },
+                {
+                    "name": "Sasha",
+                    "lastname": "Simon",
+                    "email": "montes.nascetur.ridiculus@acsemut.co.uk"
+                },
+                {
+                    "name": "Paul",
+                    "lastname": "Blankenship",
+                    "email": "turpis.non@sagittisNullam.ca"
+                },
+                {
+                    "name": "Nelle",
+                    "lastname": "Barker",
+                    "email": "et@tellus.co.uk"
+                },
+                {
+                    "name": "Yael",
+                    "lastname": "Miller",
+                    "email": "volutpat.ornare@Vivamussit.co.uk"
+                },
+                {
+                    "name": "Wayne",
+                    "lastname": "King",
+                    "email": "nonummy@vitaeposuereat.edu"
+                },
+                {
+                    "name": "Libby",
+                    "lastname": "Griffith",
+                    "email": "Sed@imperdietornareIn.com"
+                },
+                {
+                    "name": "Phyllis",
+                    "lastname": "Pickett",
+                    "email": "Curabitur.sed.tortor@orciconsectetuer.net"
+                },
+                {
+                    "name": "Clio",
+                    "lastname": "Townsend",
+                    "email": "lorem.semper.auctor@velitegestaslacinia.com"
+                },
+                {
+                    "name": "Baxter",
+                    "lastname": "Jacobson",
+                    "email": "dolor@semper.org"
+                },
+                {
+                    "name": "Joy",
+                    "lastname": "Harrison",
+                    "email": "eu@montesnasceturridiculus.ca"
+                },
+                {
+                    "name": "Herman",
+                    "lastname": "Duke",
+                    "email": "tortor.Nunc@Duis.net"
+                },
+                {
+                    "name": "Yuri",
+                    "lastname": "Daniels",
+                    "email": "libero.at.auctor@Pellentesqueutipsum.edu"
+                },
+                {
+                    "name": "Malachi",
+                    "lastname": "Hester",
+                    "email": "dolor.Donec.fringilla@Craseget.edu"
+                },
+                {
+                    "name": "Casey",
+                    "lastname": "Ware",
+                    "email": "dapibus@sed.com"
+                },
+                {
+                    "name": "Martena",
+                    "lastname": "Oneill",
+                    "email": "ante.bibendum@neque.com"
+                },
+                {
+                    "name": "Dalton",
+                    "lastname": "Puckett",
+                    "email": "lobortis@Etiamimperdiet.ca"
+                },
+                {
+                    "name": "Frances",
+                    "lastname": "Richardson",
+                    "email": "torquent@Suspendissealiquet.co.uk"
+                },
+                {
+                    "name": "Christian",
+                    "lastname": "Christensen",
+                    "email": "turpis.egestas.Fusce@malesuada.org"
+                },
+                {
+                    "name": "Abbot",
+                    "lastname": "Velez",
+                    "email": "luctus.ipsum.leo@nequevenenatis.com"
+                },
+                {
+                    "name": "Dustin",
+                    "lastname": "Christensen",
+                    "email": "molestie@Curabiturvellectus.com"
+                },
+                {
+                    "name": "Hadley",
+                    "lastname": "Rogers",
+                    "email": "neque.tellus.imperdiet@tortornibh.ca"
+                },
+                {
+                    "name": "Alexandra",
+                    "lastname": "Moore",
+                    "email": "purus.ac.tellus@iaculisaliquet.co.uk"
+                },
+                {
+                    "name": "Stephanie",
+                    "lastname": "Ballard",
+                    "email": "ut@nisi.edu"
+                },
+                {
+                    "name": "Felix",
+                    "lastname": "Webster",
+                    "email": "libero.lacus.varius@massalobortisultrices.co.uk"
+                },
+                {
+                    "name": "Buckminster",
+                    "lastname": "Duffy",
+                    "email": "ut@neccursusa.ca"
+                },
+                {
+                    "name": "Scott",
+                    "lastname": "Cervantes",
+                    "email": "odio.Aliquam.vulputate@vel.co.uk"
+                },
+                {
+                    "name": "Norman",
+                    "lastname": "Sampson",
+                    "email": "Cum.sociis@quam.ca"
+                },
+                {
+                    "name": "Garth",
+                    "lastname": "Kramer",
+                    "email": "ac.libero.nec@convallis.net"
+                },
+                {
+                    "name": "Mary",
+                    "lastname": "Bruce",
+                    "email": "est.arcu@euismodmauris.co.uk"
+                },
+                {
+                    "name": "Jin",
+                    "lastname": "Foreman",
+                    "email": "fringilla@sitametconsectetuer.org"
+                },
+                {
+                    "name": "Mechelle",
+                    "lastname": "Hopkins",
+                    "email": "at@nonummyipsum.co.uk"
+                },
+                {
+                    "name": "Oscar",
+                    "lastname": "Bailey",
+                    "email": "tempor.erat@Morbinonsapien.org"
+                },
+                {
+                    "name": "Gretchen",
+                    "lastname": "Valentine",
+                    "email": "dolor.Donec.fringilla@purus.co.uk"
+                },
+                {
+                    "name": "Piper",
+                    "lastname": "Preston",
+                    "email": "enim.sit@scelerisqueloremipsum.edu"
+                },
+                {
+                    "name": "Lamar",
+                    "lastname": "Wong",
+                    "email": "cursus.et@facilisis.net"
+                },
+                {
+                    "name": "Bryar",
+                    "lastname": "Hunter",
+                    "email": "arcu.Sed.et@convallisdolorQuisque.co.uk"
+                },
+                {
+                    "name": "Forrest",
+                    "lastname": "Bonner",
+                    "email": "a@nunc.co.uk"
+                },
+                {
+                    "name": "Alexis",
+                    "lastname": "Houston",
+                    "email": "mauris@enimconsequatpurus.com"
+                },
+                {
+                    "name": "Zephr",
+                    "lastname": "Gross",
+                    "email": "pellentesque.Sed.dictum@sapienmolestieorci.co.uk"
+                },
+                {
+                    "name": "Damon",
+                    "lastname": "Morris",
+                    "email": "pharetra@et.com"
+                },
+                {
+                    "name": "Jakeem",
+                    "lastname": "Solis",
+                    "email": "velit@Donec.edu"
+                },
+                {
+                    "name": "Vance",
+                    "lastname": "Taylor",
+                    "email": "eu.nulla.at@acorci.net"
+                },
+                {
+                    "name": "Adara",
+                    "lastname": "Arnold",
+                    "email": "et.magnis@aliquet.net"
+                },
+                {
+                    "name": "Savannah",
+                    "lastname": "Hardy",
+                    "email": "Vestibulum.ante@sempercursusInteger.ca"
+                },
+                {
+                    "name": "Melvin",
+                    "lastname": "Morton",
+                    "email": "Fusce@Sed.net"
+                },
+                {
+                    "name": "Boris",
+                    "lastname": "Gallegos",
+                    "email": "senectus.et@infaucibusorci.org"
+                },
+                {
+                    "name": "Channing",
+                    "lastname": "Johnson",
+                    "email": "Sed.eget@at.net"
+                },
+                {
+                    "name": "Barbara",
+                    "lastname": "Howell",
+                    "email": "amet@maurisSuspendissealiquet.edu"
+                },
+                {
+                    "name": "Josiah",
+                    "lastname": "Mitchell",
+                    "email": "blandit.viverra@tinciduntaliquamarcu.com"
+                },
+                {
+                    "name": "Cynthia",
+                    "lastname": "Phillips",
+                    "email": "mi@purusMaecenas.com"
+                },
+                {
+                    "name": "Aladdin",
+                    "lastname": "Garrett",
+                    "email": "elementum@pedesagittis.com"
+                },
+                {
+                    "name": "Galvin",
+                    "lastname": "Sampson",
+                    "email": "eget.venenatis.a@Etiam.co.uk"
+                },
+                {
+                    "name": "Winifred",
+                    "lastname": "Diaz",
+                    "email": "non.sollicitudin@nonummyipsum.co.uk"
+                },
+                {
+                    "name": "Joshua",
+                    "lastname": "Buckner",
+                    "email": "convallis.in@sagittis.edu"
+                },
+                {
+                    "name": "Alfonso",
+                    "lastname": "Luna",
+                    "email": "id.ante@Donecdignissim.com"
+                },
+                {
+                    "name": "Azalia",
+                    "lastname": "Schultz",
+                    "email": "adipiscing@Sedeu.edu"
+                },
+                {
+                    "name": "Lareina",
+                    "lastname": "Mendez",
+                    "email": "euismod@VivamusnisiMauris.com"
+                },
+                {
+                    "name": "Illiana",
+                    "lastname": "Gray",
+                    "email": "Donec@mifringilla.ca"
+                },
+                {
+                    "name": "Yvette",
+                    "lastname": "Barton",
+                    "email": "in.sodales.elit@metusurna.edu"
+                },
+                {
+                    "name": "Jonas",
+                    "lastname": "Walton",
+                    "email": "tempus@euismod.co.uk"
+                },
+                {
+                    "name": "Callie",
+                    "lastname": "Walton",
+                    "email": "nonummy.ut.molestie@euismodin.co.uk"
+                },
+                {
+                    "name": "Wynter",
+                    "lastname": "Fuentes",
+                    "email": "non.leo.Vivamus@non.org"
+                },
+                {
+                    "name": "Grady",
+                    "lastname": "Neal",
+                    "email": "et.eros@arcu.com"
+                },
+                {
+                    "name": "Janna",
+                    "lastname": "Ferrell",
+                    "email": "Donec@sollicitudina.edu"
+                },
+                {
+                    "name": "Dacey",
+                    "lastname": "Martin",
+                    "email": "magna.Duis.dignissim@Loremipsum.org"
+                },
+                {
+                    "name": "Tanek",
+                    "lastname": "Mcfarland",
+                    "email": "vel.quam.dignissim@estMauris.net"
+                },
+                {
+                    "name": "Richard",
+                    "lastname": "Bentley",
+                    "email": "faucibus.leo@Integeridmagna.ca"
+                },
+                {
+                    "name": "Mikayla",
+                    "lastname": "Cantu",
+                    "email": "per.conubia.nostra@etnetus.net"
+                },
+                {
+                    "name": "Madeline",
+                    "lastname": "Mcgowan",
+                    "email": "erat.neque@est.edu"
+                },
+                {
+                    "name": "Yvonne",
+                    "lastname": "Rose",
+                    "email": "enim.non.nisi@laciniaatiaculis.org"
+                },
+                {
+                    "name": "Hashim",
+                    "lastname": "Britt",
+                    "email": "Integer.vitae.nibh@musProin.ca"
+                },
+                {
+                    "name": "Gareth",
+                    "lastname": "Leach",
+                    "email": "aliquet@eratSed.net"
+                },
+                {
+                    "name": "Oprah",
+                    "lastname": "Mcmillan",
+                    "email": "Donec.luctus.aliquet@sagittisaugue.org"
+                },
+                {
+                    "name": "Sean",
+                    "lastname": "Odom",
+                    "email": "hymenaeos.Mauris@eratnequenon.com"
+                },
+                {
+                    "name": "Whitney",
+                    "lastname": "Rowland",
+                    "email": "tristique@sitamet.edu"
+                },
+                {
+                    "name": "Omar",
+                    "lastname": "Velasquez",
+                    "email": "id.nunc@elitCurabitursed.ca"
+                },
+                {
+                    "name": "Coby",
+                    "lastname": "Cline",
+                    "email": "tellus.lorem@lacusUt.co.uk"
+                },
+                {
+                    "name": "Garrison",
+                    "lastname": "Frost",
+                    "email": "non.enim.Mauris@imperdietullamcorper.ca"
+                },
+                {
+                    "name": "Claudia",
+                    "lastname": "Logan",
+                    "email": "enim.Suspendisse@miDuis.edu"
+                },
+                {
+                    "name": "Skyler",
+                    "lastname": "Cooley",
+                    "email": "eu@dui.org"
+                },
+                {
+                    "name": "Graiden",
+                    "lastname": "Austin",
+                    "email": "mollis@ac.ca"
+                },
+                {
+                    "name": "Ruth",
+                    "lastname": "Johnston",
+                    "email": "tempus.eu.ligula@pretium.co.uk"
+                },
+                {
+                    "name": "Velma",
+                    "lastname": "Harmon",
+                    "email": "sed.facilisis.vitae@vestibulumloremsit.com"
+                },
+                {
+                    "name": "Kiona",
+                    "lastname": "Dorsey",
+                    "email": "dapibus.ligula@elementumpurusaccumsan.net"
+                },
+                {
+                    "name": "Ignacia",
+                    "lastname": "Foreman",
+                    "email": "Nulla@diamProindolor.org"
+                },
+                {
+                    "name": "Macey",
+                    "lastname": "Beasley",
+                    "email": "lacus.pede.sagittis@sit.org"
+                },
+                {
+                    "name": "Neil",
+                    "lastname": "Gomez",
+                    "email": "amet@atiaculisquis.co.uk"
+                },
+                {
+                    "name": "Charity",
+                    "lastname": "Serrano",
+                    "email": "Morbi.non@orciDonec.com"
+                }
+            ]
+        }
+    });
+</script>

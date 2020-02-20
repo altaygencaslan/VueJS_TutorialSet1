@@ -1,0 +1,48 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<h2>V-FOR</h2>
+<p>
+
+</p>
+
+<div id="dvContainer">
+    <ul v-for="(product, index) in prodcuts">
+        <li v-text="(index + ' - ' + product)"></li>
+    </ul>
+    <hr>
+    <table border="1" v-for="(product, index) in prodcuts">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td v-text="index"></td>
+                <td v-text="product"></td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <table border="1">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+        </thead>
+        <tbody v-for="(product, index) in prodcuts">
+            <tr>
+                <td v-text="index"></td>
+                <td v-text="product"></td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+</div>
+
+<script>
+    new Vue({
+        el: "#dvContainer",
+        data: {
+            prodcuts: ["Monitör", "Klavye", "Fare", "RAM"]
+        }
+    });
+</script>
