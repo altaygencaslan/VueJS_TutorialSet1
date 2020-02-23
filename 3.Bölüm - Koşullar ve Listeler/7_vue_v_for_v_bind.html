@@ -1,0 +1,22 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<h2>V-FOR</h2>
+<p>
+
+</p>
+
+<div id="dvContainer">
+    <ul v-for="(product, index) in prodcuts">
+        <li :key="product" v-text="(index + ' - ' + product)"></li>
+    </ul>
+    <button @click="prodcuts.push('Hoperlör')">Ekle</button>
+</div>
+
+<script>
+    new Vue({
+        el: "#dvContainer",
+        data: {
+            prodcuts: ["Monitör", "Klavye", "Fare", "RAM"]
+        }
+    });
+</script>

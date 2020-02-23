@@ -6,36 +6,15 @@
 </p>
 
 <div id="dvContainer">
-    <ul v-for="person in persons">
-        <li v-text="person.name + ' ' + person.lastname + ' - ' + person.email"></li>
-    <!-- </ul>
-    <hr>
-    <table border="1" v-for="(product, index) in prodcuts">
-        <thead>
-            <th>ID</th>
-            <th>Name</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td v-text="index"></td>
-                <td v-text="product"></td>
-            </tr>
-        </tbody>
-    </table>
-    <hr>
-    <table border="1">
-        <thead>
-            <th>ID</th>
-            <th>Name</th>
-        </thead>
-        <tbody v-for="(product, index) in prodcuts">
-            <tr>
-                <td v-text="index"></td>
-                <td v-text="product"></td>
-            </tr>
-        </tbody>
-    </table>
-    <hr> -->
+    <ul v-for="(person, key1) in persons">
+        <li>
+            <span v-text="'Number Person of '+key1"></span>
+            <ul v-for="(detail, key2, index) in person">
+                <span v-text="'Number item of '+index"></span>
+                <li v-text="key2 + ': ' + detail"></li>
+            </ul>
+        </li>
+    </ul>
 </div>
 
 <script>
