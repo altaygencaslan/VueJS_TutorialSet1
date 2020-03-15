@@ -1,41 +1,64 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.css" media="screen" />
 
 <h2>Canavar Avı Oyunu - 1</h2>
 <p>
 
 </p>
 
-<div id="dvContainer">
-    <table>
+<div id="dvContainer" style="padding: 10px;">
+    <table style="font-size: large; width: 600px;">
         <tr>
-            <td>
+            <td class="table-success">
                 Hero
             </td>
-            <td>
+            <td class="table-danger">
                 Monster
             </td>
         </tr>
         <tr>
             <td>
-                <span v-text="'Hero HP: ' + heroHP"></span>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                        :style="{ width: getHeroHP}" aria-valuenow="heroHP" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
             </td>
             <td>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+                        :style="{ width: getMonsterHP}" aria-valuenow="monsterHP" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="table-success">
+                <span v-text="'Hero HP: ' + heroHP"></span>
+            </td>
+            <td class="table-danger">
                 <span v-text="'Monster HP: ' + monsterHP"></span>
             </td>
         </tr>
     </table>
     <br>
     <div>
-        <button @click="attackToMonster(false)">Attack</button>
-        <button @click="attackToMonster(true)">Special Attack</button>
-        <button @click="healToHero()">Heal</button>
-        <button @click="goBack()">Cancel</button>
+        <button class="btn btn-secondary" @click="newGame()" v-show="!isStarted || (heroHP <= 0 ||monsterHP <=0)">Yeni
+            Oyun</button>
     </div>
     <br>
-    <div>
-        <ul v-for="log in logs">
-            <li v-text="log"></li>
-        </ul>
+    <div v-show="isStarted">
+        <button class="btn btn-warning" @click="attackToMonster(false)">Attack !</button>
+        <button class="btn btn-danger" @click="attackToMonster(true)">Special Attack !!!</button>
+        <button class="btn btn-success" @click="healToHero()">Heal</button>
+        <button class="btn btn-primary" @click="goBack()">Give Up?!</button>
+    </div>
+    <br>
+    <div style="width: 600px; height: 400px; overflow-y: scroll;">
+        <div v-show="isStarted" v-for="(log, index) in logs">
+            <div :class="(log.type == 0 ? 'table-info' : log.type == 1 ? 'table-success' : 'table-danger')"
+                v-text="(index + '-' + log.text)">
+            </div>
+        </div>
     </div>
 </div>
 
@@ -43,11 +66,15 @@
     new Vue({
         el: "#dvContainer",
         data: {
+            isStarted: false,
             heroHP: 100,
             monsterHP: 100,
             heal: 0,
             damage: 0,
-            logs: ['Start game!']
+            logs: [{
+                'type': 0,
+                'text': 'Ready when you are Hero!'
+            }]
         },
         methods: {
             attackToMonster: function (isSpecial) {
@@ -56,35 +83,72 @@
                     this.damage *= 2;
 
                 this.monsterHP = this.monsterHP - this.damage;
-                this.logs.push("Hero attacked to monster : " + this.damage);
+                if (this.monsterHP <= 0) {
+                    this.monsterHP = 0;
 
+                    this.writeToLog(0, "Congras! You win Hero!");
+                    if (confirm('Do you restart this game?')) {
+                        this.goBack();
+                    }
+                    return;
+                }
+
+                this.writeToLog(1, "Hero attacked to monster : " + this.damage);
                 this.attackToHero();
             },
             attackToHero: function () {
                 this.damage = Math.ceil(Math.random() * 10);
 
                 this.heroHP -= this.damage;
-                this.logs.push("Monster attacked to hero : " + this.damage);
+                if (this.heroHP <= 0) {
+                    this.heroHP = 0;
+
+                    this.writeToLog(0, "Sorry Hero! You lost!");
+                    if (confirm('Do you restart this game?')) {
+                        this.goBack();
+                    }
+                    return;
+                }
+
+                this.writeToLog(2, "Monster attacked to hero : " + this.damage);
             },
             healToHero: function () {
                 this.heal = Math.ceil(Math.random() * 10);
                 this.heroHP += this.heal;
 
-                this.logs.push("Healed to Hero : " + this.heal);
+                this.writeToLog(0, "Healed to Hero : " + this.heal);
             },
             goBack: function () {
                 this.heroHP = 100;
                 this.monsterHP = 100;
 
                 this.logs.clear;
+            },
+            newGame: function () {
+                this.writeToLog(0, "New game is starting...");
+
+                this.isStarted = true;
+                this.goBack();
+            },
+            writeToLog: function (_type, _text) {
+                this.logs.push({
+                    type: _type,
+                    text: _text
+                });
             }
         },
         computed: {
             generateDamage: function () {
                 return Math.ceil(Math.random() * 10);
             },
-            generateHeal:function(){
+            generateHeal: function () {
                 return Math.ceil(Math.random() * 10);
+            },
+            getHeroHP: function () {
+                return this.heroHP + '%';
+            },
+            getMonsterHP: function () {
+                return this.monsterHP + '%';
             }
         }
     });
