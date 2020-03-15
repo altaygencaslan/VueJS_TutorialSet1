@@ -71,6 +71,8 @@
             monsterHP: 100,
             heal: 0,
             damage: 0,
+            critic: 0,
+            isCritical: false,
             logs: [{
                 'type': 0,
                 'text': 'Ready when you are Hero!'
@@ -78,39 +80,19 @@
         },
         methods: {
             attackToMonster: function (isSpecial) {
-                this.damage = Math.ceil(Math.random() * 10);
+                this.generateAttack();
                 if (isSpecial)
                     this.damage *= 2;
+                this.monsterHP -= this.damage;
 
-                this.monsterHP = this.monsterHP - this.damage;
-                if (this.monsterHP <= 0) {
-                    this.monsterHP = 0;
-
-                    this.writeToLog(0, "Congras! You win Hero!");
-                    if (confirm('Do you restart this game?')) {
-                        this.goBack();
-                    }
-                    return;
-                }
-
-                this.writeToLog(1, "Hero attacked to monster : " + this.damage);
+                this.writeToLog(1, "Hero attacked to monster : " + this.damage + (this.isCritical ? ' (Critic!)' : ''));
                 this.attackToHero();
             },
             attackToHero: function () {
-                this.damage = Math.ceil(Math.random() * 10);
-
+                this.generateAttack();
                 this.heroHP -= this.damage;
-                if (this.heroHP <= 0) {
-                    this.heroHP = 0;
 
-                    this.writeToLog(0, "Sorry Hero! You lost!");
-                    if (confirm('Do you restart this game?')) {
-                        this.goBack();
-                    }
-                    return;
-                }
-
-                this.writeToLog(2, "Monster attacked to hero : " + this.damage);
+                this.writeToLog(2, "Monster attacked to hero : " + this.damage + (this.isCritical ? ' (Critic!)' : ''));
             },
             healToHero: function () {
                 this.heal = Math.ceil(Math.random() * 10);
@@ -122,7 +104,7 @@
                 this.heroHP = 100;
                 this.monsterHP = 100;
 
-                this.logs.clear;
+                this.logs = [];
             },
             newGame: function () {
                 this.writeToLog(0, "New game is starting...");
@@ -135,12 +117,22 @@
                     type: _type,
                     text: _text
                 });
-            }
-        },
-        computed: {
+            },
+            generateAttack: function()
+            {
+                this.critic = this.generateCritical();
+                this.damage = this.generateDamage();
+                this.isCritical = this.critic == this.damage;
+                this.damage = (this.isCritical) ? this.damage * this.critic : this.damage;
+            },
             generateDamage: function () {
                 return Math.ceil(Math.random() * 10);
             },
+            generateCritical: function () {
+                return Math.ceil(Math.random() * 10);
+            }
+        },
+        computed: {
             generateHeal: function () {
                 return Math.ceil(Math.random() * 10);
             },
@@ -149,6 +141,28 @@
             },
             getMonsterHP: function () {
                 return this.monsterHP + '%';
+            }
+        },
+        watch: {
+            monsterHP: function (value) {
+                if (value <= 0) {
+                    this.monsterHP = 0;
+                    this.writeToLog(0, "Congras! You win Hero!");
+                    if (confirm('Do you restart this game?')) {
+                        this.goBack();
+                    }
+                }
+            },
+            heroHP: function (value) {
+                if (value <= 0) {
+                    this.heroHP = 0;
+                    this.writeToLog(0, "Sorry Hero! You lost!");
+                    if (confirm('Do you restart this game?')) {
+                        this.goBack();
+                    }
+                } else if (value > 100) {
+                    this.heroHP = 100;
+                }
             }
         }
     });
